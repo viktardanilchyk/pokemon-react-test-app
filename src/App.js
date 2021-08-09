@@ -1,57 +1,27 @@
 import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import Header from './components/shared/Header';
+import API from './api';
+import PokemonList from './components/pokemon-list/PokemonList';
 
 function App() {
+  const [pokemons, setPokemons] = React.useState([]);
+
+  React.useEffect(() => {
+    const loadData = async () => {
+      await API.get("/pokemon")
+        .then((response) => response.data.results)
+        .then((data) => setPokemons(data))
+        .catch((error) => console.log(error));
+    }
+
+    loadData();
+  }, [])
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
+    <React.Fragment>
+      <Header />
+      <PokemonList pokemons={pokemons} />
+    </React.Fragment>
   );
 }
 
