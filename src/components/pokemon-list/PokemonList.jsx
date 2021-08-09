@@ -5,7 +5,7 @@ import { uuidv4 } from '../../helpers/guid-generator';
 const PokemonList = (props) => {
     const { pokemons } = props
     return (
-        pokemons.any()
+        pokemons.length !== 0
             ? <ul> {
                 pokemons.map((item) => {
                     return (
