@@ -1,20 +1,8 @@
 import { combineReducers } from 'redux';
-
-const initialState = 0;
-
-function count(state = initialState, action) {
-  switch (action.type) {
-    case 'INCREMENT':
-      return state + 1
-    case 'DECREMENT':
-      return state - 1
-  default:
-    return state;
-  }
-}
+import pokemonListReducer from '../pages/pokemon-table/reducers'
 
 const rootReducer = combineReducers({
-  count
+  pokemonListReducer
 });
 
 export default rootReducer;
