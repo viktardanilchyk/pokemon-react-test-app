@@ -2,7 +2,7 @@ import React from 'react';
 
 const PokemonItem = (props) => {
     const { name, image } = props;
-    return (        
+    return (
         <li>
             <img src={image} />
             <p>{name}</p>

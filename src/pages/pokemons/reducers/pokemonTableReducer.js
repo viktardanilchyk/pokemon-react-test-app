@@ -1,5 +1,5 @@
 import { handleActions } from 'redux-actions';
-import * as actionCreators from 'pages/pokemon-table/actions';
+import * as actionCreators from 'pages/pokemons/actions';
 
 const defaultState = {
   pokemons: [],
@@ -9,11 +9,11 @@ const defaultState = {
 
 const pokemonTableReducer = handleActions(
   {
-    [actionCreators.getPokemonListRequest](state, action) {      
+    [actionCreators.getPokemonListRequest](state, action) {
       return defaultState
     },
-    [actionCreators.getPokemonListSuccess](state, action) {      
-      const results = action.payload;      
+    [actionCreators.getPokemonListSuccess](state, action) {
+      const results = action.payload;
       return { ...state, pokemons: results, loading: false };
     }
   },

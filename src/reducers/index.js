@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import pokemonListReducer from '../pages/pokemon-table/reducers'
+import pokemonListReducer from '../pages/pokemons/reducers'
 
 const rootReducer = combineReducers({
   pokemonListReducer

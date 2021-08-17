@@ -1,6 +1,6 @@
 import { takeLatest, call, put } from "redux-saga/effects";
 import API from "api";
-import * as actionCreators from "pages/pokemon-table/actions"
+import * as actionCreators from "pages/pokemons/actions"
 
 // watcher saga: watches for actions dispatched to the store, starts worker saga
 export default function* watcherSaga() {
@@ -16,8 +16,8 @@ function* fetchItems() {
 
   for (let item of data) {
     const itemResponse = yield API.get(item.url);
-      const pokemon = itemResponse.data;
-      list.push(pokemon);
+    const pokemon = itemResponse.data;
+    list.push(pokemon);
   }
 
   return list;
@@ -26,10 +26,10 @@ function* fetchItems() {
 // worker saga: makes the api call when watcher saga sees the action
 function* workerSaga() {
   try {
-    const response = yield call(fetchItems);    
-    const data = response;    
+    const response = yield call(fetchItems);
+    const data = response;
     // dispatch a success action to the store with the new dog
-    yield put(actionCreators.getPokemonListSuccess(data));  
+    yield put(actionCreators.getPokemonListSuccess(data));
   } catch (error) {
     // dispatch a failure action to the store with the error
     yield put(actionCreators.getPokemonListFailed(error));

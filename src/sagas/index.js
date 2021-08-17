@@ -1,5 +1,5 @@
 import { all, call, delay, put, takeEvery } from 'redux-saga/effects'
-import pokemonsTableSaga from 'pages/pokemon-table/sagas'
+import pokemonsTableSaga from 'pages/pokemons/sagas'
 
 function* rootSaga() {
   yield all([pokemonsTableSaga()]);
