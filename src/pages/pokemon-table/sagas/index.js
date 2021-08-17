@@ -8,15 +8,26 @@ export default function* watcherSaga() {
 }
 
 // function that makes the api request and returns a Promise for response
-function fetchPokemons() {
-  return API.get("/pokemon");
+function* fetchItems() {
+  let list = [];
+
+  const response = yield API.get("/pokemon");
+  const data = response.data.results;
+
+  for (let item of data) {
+    const itemResponse = yield API.get(item.url);
+      const pokemon = itemResponse.data;
+      list.push(pokemon);
+  }
+
+  return list;
 }
 
 // worker saga: makes the api call when watcher saga sees the action
 function* workerSaga() {
   try {
-    const response = yield call(fetchPokemons);    
-    const data = response.data;
+    const response = yield call(fetchItems);    
+    const data = response;    
     // dispatch a success action to the store with the new dog
     yield put(actionCreators.getPokemonListSuccess(data));  
   } catch (error) {

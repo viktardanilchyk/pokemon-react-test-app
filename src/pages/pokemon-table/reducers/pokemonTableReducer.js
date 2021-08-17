@@ -12,8 +12,8 @@ const pokemonTableReducer = handleActions(
     [actionCreators.getPokemonListRequest](state, action) {      
       return defaultState
     },
-    [actionCreators.getPokemonListSuccess](state, action) {
-      const { results } = action.payload;
+    [actionCreators.getPokemonListSuccess](state, action) {      
+      const results = action.payload;      
       return { ...state, pokemons: results, loading: false };
     }
   },

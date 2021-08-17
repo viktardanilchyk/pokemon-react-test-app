@@ -19,6 +19,8 @@ const PokemonList = (props) => {
       // Safe to add dispatch to the dependencies array
     }, [dispatch])
 
+    console.log(pokemons);
+
     if (loading) { 
         return <div>Loading...</div>; 
     }
@@ -30,7 +32,8 @@ const PokemonList = (props) => {
                     return (
                         <PokemonItem
                             key={uuidv4()}
-                            name={item.name} />
+                            name={item.name}
+                            image={item.sprites.front_default} />
                     );
                 })
             } </ul>
